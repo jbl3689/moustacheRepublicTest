@@ -15,7 +15,6 @@ body {
   overflow: hidden;
 }
 
-/* Create the top line */
 header {
   position: fixed;
   top: 0;
@@ -23,26 +22,61 @@ header {
   width: 100%;
   height: 40px;
   background-color: var(--header);
-  z-index: 9999; /* Ensure the line is above other elements */
+  z-index: 9999;
   margin-top: 15px;
 }
 
-/* Style the cart link */
-.cart-link {
-  display: inline-block;
+.cartLink {
+  font-size: 17px;
   padding: 5px 10px;
   color: var(--lightGrey);
   text-decoration: none;
-  margin-left: auto;
+  cursor: pointer;
+  float: right;
+  margin-right: 15%;
 }
 
-.cart-link:hover {
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.8
-  ); /* White color with 80% opacity on hover */
+.cartLink:hover {
+  color: black;
+}
+
+.dropdownContent {
+  position: absolute;
+  background-color: #ffffff;
+  width: 400px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  z-index: 1;
+  top: 100%;
+  right: 15%;
+}
+
+.dropItem {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.dropImage {
+  width: 50%;
+  height: 130px;
+  flex: 1;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.dropImg {
+  width: 50%;
+  height: 250%;
+}
+
+.dropDetails {
+  flex: 1;
+  text-align: left;
 }
 
 .container {
@@ -90,6 +124,10 @@ header {
   align-items: center;
 }
 
+.box.selected {
+  border: 2px solid var(--black);
+}
+
 .button {
   width: 190px;
   height: 50px;
@@ -105,4 +143,28 @@ header {
 button:hover {
   background-color: var(--black);
   color: #ffffff;
+}
+
+/* Media queries for different screen sizes */
+/* Adjust styles for screens with a maximum width of 768px (e.g., tablets) */
+@media screen and (max-width: 768px) {
+  .container {
+    width: 90%;
+    /* Add any other necessary adjustments for smaller screens */
+  }
+}
+
+/* Adjust styles for screens with a maximum width of 480px (e.g., mobile phones) */
+@media screen and (max-width: 480px) {
+  .container {
+    width: 100%;
+    /* Additional adjustments for even smaller screens */
+  }
+  .boxContainer {
+    flex-wrap: wrap; /* Allow boxes to wrap to new lines on small screens */
+  }
+
+  .image {
+    flex: 1;
+  }
 }

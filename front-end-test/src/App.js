@@ -1,10 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Product from "./components/Product";
 import Cart from "./components/Cart";
 
 function App() {
-  const [productDetails, setProductDetails] = React.useState(null);
-  const [productTitle, setProductTitle] = React.useState("");
+  const [productDetails, setProductDetails] = useState(null);
+  const [cart, setCart] = useState([]);
+
+  // Function to update the cart state when a new item is added
+  function addToCart(newItem) {
+    setCart((prevCart) => [...prevCart, newItem]);
+  }
 
   useEffect(() => {
     async function getProductDetails() {
@@ -23,13 +28,16 @@ function App() {
 
   return (
     <div className="App">
-      <Cart></Cart>
+      <Cart cart={cart}></Cart>
       {productDetails ? (
         <Product
           title={productDetails.title}
           price={productDetails.price}
           description={productDetails.description}
           imageURL={productDetails.imageURL}
+          sizeOptions={productDetails.sizeOptions}
+          cart={cart}
+          addToCart={addToCart}
         />
       ) : (
         <p>Loading...</p>
